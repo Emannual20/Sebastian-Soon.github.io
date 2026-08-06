@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Site</title>
+<meta name="description" content="An aspiring automation engineer, with a passion for design and technology.">
+<style>
+  :root{
+    --text:#3a3a3a;
+    --muted:#767676;
+    --line:#d9d9d9;
+    --link:#1a1a1a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--text);
+    line-height:1.6;
+    font-size:15px;
+    background:#fff;
+  }
+  a{color:var(--link);}
+  .wrap{max-width:900px; margin:0 auto; padding:0 24px;}
+
+  nav{border-bottom:1px solid var(--line); padding:22px 0;}
+  nav .wrap{display:flex; justify-content:center; gap:36px;}
+  nav a{text-decoration:none; text-transform:uppercase; font-size:13px; letter-spacing:.12em; color:#444;}
+  nav a:hover{color:#000;}
+
+  .hero{text-align:center; padding:60px 24px 40px;}
+  .hero h1{font-size:2.4rem; font-weight:300; letter-spacing:.03em; margin:0 0 8px;}
+  .hero .role{font-size:1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.15em;}
+
+  hr{border:none; border-top:1px solid var(--line); margin:0;}
+
+  section{padding:50px 0;}
+  h2{text-align:center; font-weight:300; font-size:1.7rem; letter-spacing:.02em; margin:0 0 30px;}
+
+  .row{display:flex; align-items:center; gap:40px; flex-wrap:wrap;}
+  .row.reverse{flex-direction:row-reverse;}
+  .row .text{flex:1 1 320px;}
+  .row .media{flex:1 1 320px;}
+  .row img{width:100%; height:auto; display:block; border:1px solid var(--line);}
+  .row iframe{width:100%; aspect-ratio:16/9; border:1px solid var(--line);}
+  .row p{margin:0 0 14px;}
+
+  .placeholder{
+    width:100%; aspect-ratio:4/3; border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; color:var(--muted); font-size:12px; padding:16px;
+  }
+
+  .skills{display:flex; justify-content:center; gap:60px; flex-wrap:wrap; text-align:center;}
+  .skills .skill{max-width:320px;}
+  .skills h3{font-weight:400; font-size:1.1rem; margin-bottom:10px;}
+  .skills p{color:var(--muted); font-size:14px;}
+
+  .contact-cta{text-align:center; padding:60px 24px;}
+  .btn{
+    display:inline-block; margin-top:18px; padding:12px 30px; border:1px solid #333;
+    text-decoration:none; color:#333; text-transform:uppercase; font-size:13px;
+    letter-spacing:.1em; transition:all .2s;
+  }
+  .btn:hover{background:#333; color:#fff;}
+
+  footer{text-align:center; padding:30px 24px 50px; color:var(--muted); font-size:12px;}
+  footer nav{border:none; padding:0 0 16px;}
+
+  @media (max-width:640px){
+    .hero h1{font-size:1.9rem;}
+    section{padding:36px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top">Home</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero" id="top">
+  <h1>Sebastian Soon</h1>
+  <div class="role">Automation Engineer</div>
+</div>
+
+<hr>
+
+<section id="profile">
+  <div class="wrap">
+    <h2>Profile</h2>
+    <div class="row">
+      <div class="text">
+        <p>An aspiring automation engineer, with a passion for design and technology. I have a strong interest in automating tasks, optimizing the workflow to achieve maximum efficiency. I am open to taking on different challenges, and am a keen learner who can pick up new skills quickly.</p>
+        <p>With past experience in the field of engineering, I have acquired many new engineering skills which can I can contribute for my role.</p>
+      </div>
+      <div class="media">
+        <div class="placeholder">Drop in your photo here<br>(e.g. singapore-jewelry-expo.png)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="past-projects">
+  <div class="wrap">
+    <h2>Past Projects</h2>
+    <div class="row reverse">
+      <div class="text">
+        <p>I have worked on several engineering projects, involving the implementation of software and hardware. The experience has given robust knowledge in Python, a powerful programming language which can work with microcontrollers such as Arduino and Raspberry PI.</p>
+        <p>These tools are often used at the heart of any automation project, where we use algorithms and autonomous control to perform tasks.</p>
+      </div>
+      <div class="media">
+        <div class="placeholder">Drop in your image here<br>(e.g. automation-1.png)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="ur-vision">
+  <div class="wrap">
+    <h2>UR Vision Project</h2>
+    <p style="text-align:center; max-width:640px; margin:0 auto 30px;">During my internship, I spearheaded an automation project. I created a Robotic Arm Movement Vision System. This concept was to replace labor intensive tasks of pick and place, with an automated solution. The project would later be showcased at the 2022 Singapore Jewelry Expo.</p>
+    <div class="row">
+      <div class="media">
+        <iframe src="https://www.youtube.com/embed/abWj6XnnrJ0?wmode=opaque" title="UR Vision Project demo" allowfullscreen></iframe>
+      </div>
+      <div class="text">
+        <p>Through this project, I sparked an interest in automation. I enjoyed the process of building hardware and software and seeing the entire project come together.</p>
+        <p>The power of automation can be used across various industries, and I hope to join a team where I can contribute my skillset in projects such as these.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="mobility-hand">
+  <div class="wrap">
+    <h2>AI Assisted Mobility Hand</h2>
+    <div class="row">
+      <div class="text">
+        <p>I joined the NTU Deep-Learning Week Hackathon in October 2022. Our team created an AI driven mobility arm, with capabilities such as a vision system, as well as voice activated commands.</p>
+        <p>We created this prosthetic arm as a proof of concept, to aid those who require limb replacements. These include the elderly, and those who have suffered loss of limbs/mobility in accidents.</p>
+      </div>
+      <div class="media">
+        <div class="placeholder">Drop in your image here<br>(e.g. whatsapp-image-1.jpeg)</div>
+      </div>
+    </div>
+    <div class="row reverse" style="margin-top:36px;">
+      <div class="media">
+        <div class="placeholder">Drop in your image here<br>(e.g. whatsapp-image-2.jpeg)</div>
+      </div>
+      <div class="text">
+        <p>I was in charge of the mechanical components, as well as the 3D Design of our prototype. I used Arduino as the micro-controller, to work with the other components such as servos to control the actions of the hands.</p>
+        <p>We used a camera to identify objects, and the voice assistance was meant to command the arm to perform opening and closing actions.</p>
+      </div>
+    </div>
+    <div class="row" style="margin-top:36px;">
+      <div class="text">
+        <p>The Hackathon was a really fun experience, where I also learned new programming knowledge from my other team mates. I also worked with University students who I had never met before up until that point.</p>
+        <p>Each person had their own strengths, and we communicated and worked well in our own aspects, pulling our weight and contributing in the areas of our individual expertise. Even though we were strangers, we managed to work really well together through the three days of the competition, and pulled off a product we were really proud of.</p>
+      </div>
+      <div class="media">
+        <iframe src="https://www.youtube.com/embed/jXDb-f8Fx_g?wmode=opaque" title="AI Assisted Mobility Hand demo" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="38-link">
+  <div class="wrap">
+    <h2>38-link &amp; 38 DL Plus</h2>
+    <div class="row">
+      <div class="text">
+        <p>During my internship, I also worked on automating a device which my company produces for engineering firms such as Aerospace companies. This device measures the thickness of objects, for inspection purposes.</p>
+        <p>Originally, the measurement process was very manually laborious, taking up valuable time of the engineer at work. Thus, we wanted to create a software solution, which would allow the user time savings, and improve the efficiency of the measurement process. After the software had been completed, I also created a video which showcases the power of the software and its benefits.</p>
+      </div>
+      <div class="media">
+        <div class="placeholder">Drop in your image here<br>(e.g. screenshot-549.png)</div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:36px;">
+      <div class="media">
+        <iframe src="https://www.youtube.com/embed/ufyiW_xn32o?wmode=opaque" title="38-link software demo" allowfullscreen></iframe>
+      </div>
+      <div class="text"></div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Engineering Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <h3>3D Design</h3>
+        <p>Through the many projects I had worked on, I often had to use 3D design software, such as Inventor to design the components. This skill is extremely important for future work as it will definitely be used throughout my work as an automation engineer.</p>
+      </div>
+      <div class="skill">
+        <h3>Programming</h3>
+        <p>For automation, there will be a heavy reliance on the ability to program, as I need to implement software and hardware into the solutions we create. Thus, it is a really useful skill I bring to the table, particularly since I have many different experiences with programming hardware in my past projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<div class="contact-cta" id="contact">
+  <h2>Get In Touch</h2>
+  <a class="btn" href="mailto:your.email@example.com">Contact</a>
+</div>
+
+<footer>
+  <nav>
+    <div class="wrap">
+      <a href="#top">Home</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <span id="year"></span> Sebastian Soon
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
