@@ -1,241 +1,511 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Site</title>
-<meta name="description" content="An aspiring automation engineer, with a passion for design and technology.">
-<style>
-  :root{
-    --text:#3a3a3a;
-    --muted:#767676;
-    --line:#d9d9d9;
-    --link:#1a1a1a;
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    color:var(--text);
-    line-height:1.6;
-    font-size:15px;
-    background:#fff;
-  }
-  a{color:var(--link);}
-  .wrap{max-width:900px; margin:0 auto; padding:0 24px;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sebastian Soon's engineering portfolio: automation, robotics, and inspection projects.">
+  <meta name="theme-color" content="#f5f7f8">
+  <title>Sebastian Soon | Automation &amp; Robotics Engineer</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17242c;
+      --muted: #596a73;
+      --line: #dce4e7;
+      --paper: #ffffff;
+      --canvas: #f5f7f8;
+      --accent: #087e83;
+      --accent-dark: #05666b;
+      --soft-accent: #e6f3f2;
+      --radius: 18px;
+      --shadow: 0 16px 42px rgba(27, 47, 57, 0.08);
+    }
 
-  nav{border-bottom:1px solid var(--line); padding:22px 0;}
-  nav .wrap{display:flex; justify-content:center; gap:36px;}
-  nav a{text-decoration:none; text-transform:uppercase; font-size:13px; letter-spacing:.12em; color:#444;}
-  nav a:hover{color:#000;}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font: 16px/1.7 "Segoe UI", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, video, iframe { max-width: 100%; }
+    img { display: block; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #e29b45;
+      outline-offset: 4px;
+    }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .skip-link {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      padding: 10px 14px;
+      transform: translateY(-150%);
+      background: var(--ink);
+      color: white;
+      border-radius: 8px;
+    }
+    .skip-link:focus { transform: translateY(0); }
 
-  .hero{text-align:center; padding:60px 24px 40px;}
-  .hero h1{font-size:2.4rem; font-weight:300; letter-spacing:.03em; margin:0 0 8px;}
-  .hero .role{font-size:1rem; color:var(--muted); text-transform:uppercase; letter-spacing:.15em;}
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      border-bottom: 1px solid rgba(220, 228, 231, .85);
+      background: rgba(245, 247, 248, .92);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      color: var(--ink);
+      font-size: .96rem;
+      font-weight: 700;
+      letter-spacing: -.025em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: .9rem;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+    .nav-links a:hover { color: var(--accent-dark); }
 
-  hr{border:none; border-top:1px solid var(--line); margin:0;}
+    .hero { padding: clamp(64px, 9vw, 112px) 0 76px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+      align-items: center;
+      gap: clamp(40px, 8vw, 96px);
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: var(--accent-dark);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 26px;
+      height: 2px;
+      background: var(--accent);
+      content: "";
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 680px;
+      margin-bottom: 20px;
+      font-size: clamp(2.75rem, 6vw, 5.2rem);
+      line-height: 1.02;
+      letter-spacing: -.065em;
+    }
+    .hero-copy {
+      max-width: 610px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    }
+    .button-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-size: .9rem;
+      font-weight: 650;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease, transform .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--accent-dark); border-color: var(--accent-dark); }
+    .button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    .button.secondary:hover { background: white; border-color: #b7c8cd; }
+    .hero-photo { position: relative; }
+    .hero-photo img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .photo-note {
+      position: absolute;
+      right: -14px;
+      bottom: 20px;
+      max-width: 210px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      color: var(--muted);
+      font-size: .78rem;
+      line-height: 1.45;
+    }
 
-  section{padding:50px 0;}
-  h2{text-align:center; font-weight:300; font-size:1.7rem; letter-spacing:.02em; margin:0 0 30px;}
+    .section { padding: 84px 0; scroll-margin-top: 88px; }
+    .section.white { background: var(--paper); }
+    .section-heading { max-width: 650px; margin-bottom: 38px; }
+    .section-heading h2 {
+      margin-bottom: 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.12;
+      letter-spacing: -.045em;
+    }
+    .section-heading p { margin-bottom: 0; color: var(--muted); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .72fr);
+      align-items: center;
+      gap: 54px;
+    }
+    .about-copy p { color: var(--muted); }
+    .about-copy p:last-child { margin-bottom: 0; }
+    .about-photo img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: var(--radius);
+    }
+    .caption { margin: 10px 0 0; color: var(--muted); font-size: .8rem; }
 
-  .row{display:flex; align-items:center; gap:40px; flex-wrap:wrap;}
-  .row.reverse{flex-direction:row-reverse;}
-  .row .text{flex:1 1 320px;}
-  .row .media{flex:1 1 320px;}
-  .row img{width:100%; height:auto; display:block; border:1px solid var(--line);}
-  .row iframe{width:100%; aspect-ratio:16/9; border:1px solid var(--line);}
-  .row p{margin:0 0 14px;}
+    .project-list { display: grid; gap: 28px; }
+    .project-card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .88fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 8px 26px rgba(27, 47, 57, .04);
+    }
+    .project-card:nth-child(even) { grid-template-columns: minmax(300px, .88fr) minmax(0, 1fr); }
+    .project-card:nth-child(even) .project-media { order: 0; }
+    .project-card:nth-child(even) .project-copy { order: 1; }
+    .project-copy { padding: clamp(26px, 4.5vw, 48px); align-self: center; }
+    .project-number {
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .project-copy h3 { margin-bottom: 12px; font-size: clamp(1.4rem, 2.4vw, 1.85rem); line-height: 1.2; letter-spacing: -.035em; }
+    .project-copy p { margin-bottom: 14px; color: var(--muted); }
+    .project-copy p:last-of-type { margin-bottom: 18px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--soft-accent);
+      color: var(--accent-dark);
+      font-size: .75rem;
+      font-weight: 650;
+    }
+    .project-media { display: grid; align-content: stretch; background: #e8edef; }
+    .project-media img { width: 100%; height: 100%; min-height: 330px; object-fit: cover; }
+    .media-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+    .media-stack img { min-height: 330px; }
+    .project-video {
+      width: 100%;
+      min-height: 280px;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      background: #162329;
+    }
+    .project-demo { margin-top: 22px; overflow: hidden; border-radius: 12px; background: #162329; }
 
-  .placeholder{
-    width:100%; aspect-ratio:4/3; border:1px dashed var(--line);
-    display:flex; align-items:center; justify-content:center;
-    text-align:center; color:var(--muted); font-size:12px; padding:16px;
-  }
+    .film-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .film-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+    }
+    .film-card video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #17242c; object-fit: cover; }
+    .film-card h3 { margin: 0; padding: 16px 18px 18px; font-size: .97rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .skill-card { padding: 26px; border: 1px solid var(--line); border-radius: 14px; background: var(--paper); }
+    .skill-card h3 { margin-bottom: 8px; font-size: 1.1rem; }
+    .skill-card p { margin-bottom: 0; color: var(--muted); font-size: .94rem; }
 
-  .skills{display:flex; justify-content:center; gap:60px; flex-wrap:wrap; text-align:center;}
-  .skills .skill{max-width:320px;}
-  .skills h3{font-weight:400; font-size:1.1rem; margin-bottom:10px;}
-  .skills p{color:var(--muted); font-size:14px;}
+    .contact {
+      padding: clamp(56px, 8vw, 88px) 24px;
+      background: #172a33;
+      color: white;
+      text-align: center;
+      scroll-margin-top: 72px;
+    }
+    .contact h2 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.045em; }
+    .contact > p { max-width: 520px; margin: 0 auto 20px; color: #c1d0d5; }
+    .contact .button { border-color: #72c4c0; background: #72c4c0; color: #10272a; }
+    .contact .button:hover { border-color: #94d6d2; background: #94d6d2; }
+    .contact-details {
+      width: min(520px, 100%);
+      margin: 28px auto 0;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      background: rgba(255,255,255,.07);
+      text-align: left;
+    }
+    .contact-details p { margin: 0; }
+    .contact-details p + p { margin-top: 10px; }
+    .contact-details a { color: #b3e4e0; overflow-wrap: anywhere; }
+    [hidden] { display: none !important; }
+    footer { padding: 22px 24px; color: var(--muted); font-size: .8rem; text-align: center; }
 
-  .contact-cta{text-align:center; padding:60px 24px;}
-  .btn{
-    display:inline-block; margin-top:18px; padding:12px 30px; border:1px solid #333;
-    text-decoration:none; color:#333; text-transform:uppercase; font-size:13px;
-    letter-spacing:.1em; transition:all .2s;
-  }
-  .btn:hover{background:#333; color:#fff;}
-
-  footer{text-align:center; padding:30px 24px 50px; color:var(--muted); font-size:12px;}
-  footer nav{border:none; padding:0 0 16px;}
-
-  @media (max-width:640px){
-    .hero h1{font-size:1.9rem;}
-    section{padding:36px 0;}
-  }
-</style>
+    @media (max-width: 760px) {
+      .hero-grid, .about-grid, .project-card, .project-card:nth-child(even) { grid-template-columns: 1fr; }
+      .hero-grid { gap: 38px; }
+      .hero-photo { max-width: 560px; }
+      .photo-note { right: 10px; }
+      .about-grid { gap: 28px; }
+      .project-card:nth-child(even) .project-copy { order: 0; }
+      .project-card:nth-child(even) .project-media { order: 1; }
+      .project-media img, .media-stack img { min-height: 250px; max-height: 420px; }
+      .project-demo { margin-top: 18px; }
+      .film-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .wrap { width: min(100% - 32px, 1120px); }
+      .nav { min-height: 64px; }
+      .nav-links { gap: 16px; }
+      .nav-links a { font-size: .82rem; }
+      .brand { font-size: .88rem; }
+      .hero { padding-top: 56px; }
+      .section { padding: 62px 0; }
+      .project-copy { padding: 26px 22px; }
+      .media-stack { grid-template-columns: 1fr; }
+      .media-stack img { min-height: 0; max-height: none; aspect-ratio: 4 / 3; }
+      .film-grid, .skills-grid { grid-template-columns: 1fr; }
+      .button-row .button { flex: 1 1 150px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-
-<nav>
-  <div class="wrap">
-    <a href="#top">Home</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
-
-<div class="hero" id="top">
-  <h1>Sebastian Soon</h1>
-  <div class="role">Automation Engineer</div>
-</div>
-
-<hr>
-
-<section id="profile">
-  <div class="wrap">
-    <h2>Profile</h2>
-    <div class="row">
-      <div class="text">
-        <p>An aspiring automation engineer, with a passion for design and technology. I have a strong interest in automating tasks, optimizing the workflow to achieve maximum efficiency. I am open to taking on different challenges, and am a keen learner who can pick up new skills quickly.</p>
-        <p>With past experience in the field of engineering, I have acquired many new engineering skills which can I can contribute for my role.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top">Sebastian Soon</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
       </div>
-      <div class="media">
-        <div class="placeholder">Drop in your photo here<br>(e.g. singapore-jewelry-expo.png)</div>
-      </div>
-    </div>
-  </div>
-</section>
+    </nav>
+  </header>
 
-<hr>
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Engineering portfolio</p>
+          <h1>Building practical automation for real-world work.</h1>
+          <p class="hero-copy">I’m Sebastian, an automation engineer interested in robotics, machine vision, and thoughtful engineering design. I enjoy bringing hardware and software together to make complex tasks simpler.</p>
+          <div class="button-row">
+            <a class="button" href="#projects">Explore my projects</a>
+            <a class="button secondary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="pictures/CAM_end_intern.jpeg" alt="Sebastian with colleagues at the end of an internship project" fetchpriority="high">
+          <div class="photo-note">Collaborative engineering, from first concept to finished system.</div>
+        </div>
+      </div>
+    </section>
 
-<section id="past-projects">
-  <div class="wrap">
-    <h2>Past Projects</h2>
-    <div class="row reverse">
-      <div class="text">
-        <p>I have worked on several engineering projects, involving the implementation of software and hardware. The experience has given robust knowledge in Python, a powerful programming language which can work with microcontrollers such as Arduino and Raspberry PI.</p>
-        <p>These tools are often used at the heart of any automation project, where we use algorithms and autonomous control to perform tasks.</p>
+    <section class="section white" id="about">
+      <div class="wrap about-grid">
+        <div class="about-copy">
+          <div class="section-heading">
+            <p class="eyebrow">A little about me</p>
+            <h2>Curious by nature. Practical by design.</h2>
+          </div>
+          <p>I’m an aspiring automation engineer with a passion for design and technology. I’m interested in automating tasks and improving workflows, and I enjoy learning new tools to take on unfamiliar engineering challenges.</p>
+          <p>Through my engineering experience, I’ve developed skills in robotics, mechanical design, programming, and communicating technical ideas. I value collaborative work and like seeing a project come together across both hardware and software.</p>
+        </div>
+        <figure class="about-photo">
+          <img src="pictures/poly_graduation.jpeg" alt="Sebastian and classmates celebrating their graduation" loading="lazy" decoding="async">
+          <figcaption class="caption">An important milestone in my engineering journey.</figcaption>
+        </figure>
       </div>
-      <div class="media">
-        <div class="placeholder">Drop in your image here<br>(e.g. automation-1.png)</div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<hr>
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Selected work</p>
+          <h2>Engineering projects</h2>
+          <p>A selection of automation, robotics, and prototyping work I’ve contributed to.</p>
+        </div>
 
-<section id="ur-vision">
-  <div class="wrap">
-    <h2>UR Vision Project</h2>
-    <p style="text-align:center; max-width:640px; margin:0 auto 30px;">During my internship, I spearheaded an automation project. I created a Robotic Arm Movement Vision System. This concept was to replace labor intensive tasks of pick and place, with an automated solution. The project would later be showcased at the 2022 Singapore Jewelry Expo.</p>
-    <div class="row">
-      <div class="media">
-        <iframe src="https://www.youtube.com/embed/abWj6XnnrJ0?wmode=opaque" title="UR Vision Project demo" allowfullscreen></iframe>
-      </div>
-      <div class="text">
-        <p>Through this project, I sparked an interest in automation. I enjoyed the process of building hardware and software and seeing the entire project come together.</p>
-        <p>The power of automation can be used across various industries, and I hope to join a team where I can contribute my skillset in projects such as these.</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="project-list">
+          <article class="project-card">
+            <div class="project-copy">
+              <p class="project-number">01 / Robotics &amp; machine vision</p>
+              <h3>Robotic arm movement vision system</h3>
+              <p>During my internship, I led the development of a robotic arm movement vision system designed to automate pick-and-place tasks. The concept brought together a Universal Robot arm, vision, and software, and was showcased at the 2022 Singapore International Jewelry Expo.</p>
+              <p>The project sparked my interest in automation: I enjoyed designing the system, building the hardware and software, and seeing the complete solution in action.</p>
+              <div class="tags" aria-label="Project skills">
+                <span class="tag">Robotics</span><span class="tag">Machine vision</span><span class="tag">Automation</span>
+              </div>
+              <div class="project-demo">
+                <iframe class="project-video" src="https://www.youtube.com/embed/abWj6XnnrJ0?wmode=opaque" title="Robotic arm movement vision system demo" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="project-media media-stack">
+              <img src="pictures/universal_robot.png" alt="Universal Robot arm set up for an automation task" loading="lazy" decoding="async">
+              <img src="pictures/jewelry_expo.png" alt="Robotic inspection equipment displayed at an expo" loading="lazy" decoding="async">
+            </div>
+          </article>
 
-<hr>
+          <article class="project-card">
+            <div class="project-copy">
+              <p class="project-number">02 / Prototyping &amp; assistive technology</p>
+              <h3>AI-assisted mobility hand</h3>
+              <p>At the NTU Deep-Learning Week Hackathon in October 2022, my team created a proof-of-concept mobility hand with a vision system and voice-activated commands. The project explored how an assistive device could respond to its surroundings and to a user.</p>
+              <p>I focused on the mechanical components and 3D design, using Arduino and servo motors to control the hand. Working closely with teammates across different disciplines, we built a prototype together over three days.</p>
+              <div class="tags" aria-label="Project skills">
+                <span class="tag">3D design</span><span class="tag">Arduino</span><span class="tag">Prototyping</span>
+              </div>
+              <div class="project-demo">
+                <iframe class="project-video" src="https://www.youtube.com/embed/jXDb-f8Fx_g?wmode=opaque" title="AI-assisted mobility hand demo" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="project-media">
+              <img src="pictures/mobot_hand.png" alt="Prototype of the team's blue-fingered robotic mobility hand" loading="lazy" decoding="async">
+            </div>
+          </article>
 
-<section id="mobility-hand">
-  <div class="wrap">
-    <h2>AI Assisted Mobility Hand</h2>
-    <div class="row">
-      <div class="text">
-        <p>I joined the NTU Deep-Learning Week Hackathon in October 2022. Our team created an AI driven mobility arm, with capabilities such as a vision system, as well as voice activated commands.</p>
-        <p>We created this prosthetic arm as a proof of concept, to aid those who require limb replacements. These include the elderly, and those who have suffered loss of limbs/mobility in accidents.</p>
+          <article class="project-card">
+            <div class="project-copy">
+              <p class="project-number">03 / Software &amp; inspection</p>
+              <h3>Automating the 38-link measurement workflow</h3>
+              <p>I worked on automating a device used by engineering firms to measure material thickness for inspection. The existing process was labor-intensive, so we developed a software solution to reduce manual steps and save engineers time.</p>
+              <p>I also created a demonstration video to show the software and its benefits. The work gave me experience connecting a practical inspection need with a more efficient workflow.</p>
+              <div class="tags" aria-label="Project skills">
+                <span class="tag">Software</span><span class="tag">Inspection</span><span class="tag">Workflow automation</span>
+              </div>
+              <div class="project-demo">
+                <iframe class="project-video" src="https://www.youtube.com/embed/ufyiW_xn32o?wmode=opaque" title="38-link measurement software demo" loading="lazy" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="project-media">
+              <img src="pictures/scanner_set_up_documentation.png" alt="Inspection equipment prepared for a measurement workflow" loading="lazy" decoding="async">
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="media">
-        <div class="placeholder">Drop in your image here<br>(e.g. whatsapp-image-1.jpeg)</div>
-      </div>
-    </div>
-    <div class="row reverse" style="margin-top:36px;">
-      <div class="media">
-        <div class="placeholder">Drop in your image here<br>(e.g. whatsapp-image-2.jpeg)</div>
-      </div>
-      <div class="text">
-        <p>I was in charge of the mechanical components, as well as the 3D Design of our prototype. I used Arduino as the micro-controller, to work with the other components such as servos to control the actions of the hands.</p>
-        <p>We used a camera to identify objects, and the voice assistance was meant to command the arm to perform opening and closing actions.</p>
-      </div>
-    </div>
-    <div class="row" style="margin-top:36px;">
-      <div class="text">
-        <p>The Hackathon was a really fun experience, where I also learned new programming knowledge from my other team mates. I also worked with University students who I had never met before up until that point.</p>
-        <p>Each person had their own strengths, and we communicated and worked well in our own aspects, pulling our weight and contributing in the areas of our individual expertise. Even though we were strangers, we managed to work really well together through the three days of the competition, and pulled off a product we were really proud of.</p>
-      </div>
-      <div class="media">
-        <iframe src="https://www.youtube.com/embed/jXDb-f8Fx_g?wmode=opaque" title="AI Assisted Mobility Hand demo" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<hr>
-
-<section id="38-link">
-  <div class="wrap">
-    <h2>38-link &amp; 38 DL Plus</h2>
-    <div class="row">
-      <div class="text">
-        <p>During my internship, I also worked on automating a device which my company produces for engineering firms such as Aerospace companies. This device measures the thickness of objects, for inspection purposes.</p>
-        <p>Originally, the measurement process was very manually laborious, taking up valuable time of the engineer at work. Thus, we wanted to create a software solution, which would allow the user time savings, and improve the efficiency of the measurement process. After the software had been completed, I also created a video which showcases the power of the software and its benefits.</p>
+    <section class="section white" id="media">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">In motion</p>
+          <h2>Project videos</h2>
+          <p>Short clips from automation builds and project demonstrations.</p>
+        </div>
+        <div class="film-grid">
+          <article class="film-card">
+            <video controls preload="metadata" playsinline poster="pictures/lab_vanta_ur_set_up.png">
+              <source src="pictures/Gold%20Bar%20%28Pick%20%26%20Place%29.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <h3>Gold Bar Pick &amp; Place</h3>
+          </article>
+          <article class="film-card">
+            <video controls preload="metadata" playsinline poster="pictures/jewelry_expo.png">
+              <source src="pictures/Jewelry%20Expo%20Automation%20Video.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <h3>Jewelry Expo Automation</h3>
+          </article>
+          <article class="film-card">
+            <video controls preload="metadata" playsinline poster="pictures/universal_robot.png">
+              <source src="pictures/project_completion.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+            </video>
+            <h3>Project Completion</h3>
+          </article>
+        </div>
       </div>
-      <div class="media">
-        <div class="placeholder">Drop in your image here<br>(e.g. screenshot-549.png)</div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">How I work</p>
+          <h2>Engineering skills</h2>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <h3>3D design &amp; mechanical systems</h3>
+            <p>I use 3D design tools such as Inventor to develop components and support the mechanical side of automation projects.</p>
+          </article>
+          <article class="skill-card">
+            <h3>Programming &amp; integration</h3>
+            <p>I enjoy connecting software, hardware, and microcontrollers such as Arduino and Raspberry Pi to build useful automated solutions.</p>
+          </article>
+        </div>
       </div>
-    </div>
-    <div class="row" style="margin-top:36px;">
-      <div class="media">
-        <iframe src="https://www.youtube.com/embed/ufyiW_xn32o?wmode=opaque" title="38-link software demo" allowfullscreen></iframe>
+    </section>
+
+    <section class="contact" id="contact">
+      <h2>Let’s build something useful.</h2>
+      <p>Have an engineering project or opportunity in mind? I’d be glad to hear from you.</p>
+      <button class="button" id="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-details">
+        Show contact details
+      </button>
+      <div class="contact-details" id="contact-details" hidden>
+        <p><strong>Email:</strong> <a href="mailto:sebastian.soon-chun_choong@hsbi.de">sebastian.soon-chun_choong@hsbi.de</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+4915510722729">+49 15510722729</a></p>
       </div>
-      <div class="text"></div>
-    </div>
-  </div>
-</section>
+    </section>
+  </main>
 
-<hr>
+  <footer>
+    <span id="year"></span> Sebastian Soon · Engineering portfolio
+  </footer>
+  <script>
+    const contactToggle = document.getElementById("contact-toggle");
+    const contactDetails = document.getElementById("contact-details");
 
-<section id="skills">
-  <div class="wrap">
-    <h2>Engineering Skills</h2>
-    <div class="skills">
-      <div class="skill">
-        <h3>3D Design</h3>
-        <p>Through the many projects I had worked on, I often had to use 3D design software, such as Inventor to design the components. This skill is extremely important for future work as it will definitely be used throughout my work as an automation engineer.</p>
-      </div>
-      <div class="skill">
-        <h3>Programming</h3>
-        <p>For automation, there will be a heavy reliance on the ability to program, as I need to implement software and hardware into the solutions we create. Thus, it is a really useful skill I bring to the table, particularly since I have many different experiences with programming hardware in my past projects.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    contactToggle.addEventListener("click", () => {
+      const isExpanded = contactToggle.getAttribute("aria-expanded") === "true";
+      contactToggle.setAttribute("aria-expanded", String(!isExpanded));
+      contactDetails.hidden = isExpanded;
+      contactToggle.textContent = isExpanded ? "Show contact details" : "Hide contact details";
+    });
 
-<hr>
-
-<div class="contact-cta" id="contact">
-  <h2>Get In Touch</h2>
-  <a class="btn" href="mailto:your.email@example.com">Contact</a>
-</div>
-
-<footer>
-  <nav>
-    <div class="wrap">
-      <a href="#top">Home</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-  <span id="year"></span> Sebastian Soon
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
