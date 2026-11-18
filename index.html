@@ -82,6 +82,33 @@
       transition: color .2s ease;
     }
     .nav-links a:hover { color: var(--accent-dark); }
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--paper);
+    }
+    .language-switch button {
+      min-width: 38px;
+      height: 32px;
+      padding: 0 8px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: .76rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .language-switch button.active {
+      background: var(--accent);
+      color: white;
+    }
+    .language-switch button:focus-visible { outline-offset: 2px; }
 
     .hero { padding: clamp(64px, 9vw, 112px) 0 76px; }
     .hero-grid {
@@ -315,7 +342,8 @@
     @media (max-width: 520px) {
       .wrap { width: min(100% - 32px, 1120px); }
       .nav { min-height: 64px; }
-      .nav-links { gap: 16px; }
+      .nav { flex-wrap: wrap; gap: 8px 12px; padding-block: 10px; }
+      .nav-links { gap: 10px; }
       .nav-links a { font-size: .82rem; }
       .brand { font-size: .88rem; }
       .hero { padding-top: 56px; }
@@ -333,14 +361,18 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
   <header class="site-header">
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="brand" href="#top">Sebastian Soon</a>
       <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#projects" data-i18n="nav_projects">Projects</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="language-switch" role="group" aria-label="Choose language">
+        <button type="button" data-language="en" class="active" aria-pressed="true">EN</button>
+        <button type="button" data-language="de" aria-pressed="false">DE</button>
       </div>
     </nav>
   </header>
@@ -349,17 +381,17 @@
     <section class="hero wrap" id="top">
       <div class="hero-grid">
         <div>
-          <p class="eyebrow">Engineering portfolio</p>
-          <h1>Building practical automation for real-world work.</h1>
-          <p class="hero-copy">I’m Sebastian, an automation engineer interested in robotics, machine vision, and thoughtful engineering design. I enjoy bringing hardware and software together to make complex tasks simpler.</p>
+          <p class="eyebrow" data-i18n="eyebrow_portfolio">Engineering portfolio</p>
+          <h1 data-i18n="hero_title">Building practical automation for real-world work.</h1>
+          <p class="hero-copy" data-i18n="hero_copy">I’m Sebastian, an automation engineer interested in robotics, machine vision, and thoughtful engineering design. I enjoy bringing hardware and software together to make complex tasks simpler.</p>
           <div class="button-row">
-            <a class="button" href="#projects">Explore my projects</a>
-            <a class="button secondary" href="#contact">Get in touch</a>
+            <a class="button" href="#projects" data-i18n="hero_projects">Explore my projects</a>
+            <a class="button secondary" href="#contact" data-i18n="hero_contact">Get in touch</a>
           </div>
         </div>
         <div class="hero-photo">
           <img src="pictures/CAM_end_intern.jpeg" alt="Sebastian with colleagues at the end of an internship project" fetchpriority="high">
-          <div class="photo-note">Collaborative engineering, from first concept to finished system.</div>
+          <div class="photo-note" data-i18n="photo_note">Collaborative engineering, from first concept to finished system.</div>
         </div>
       </div>
     </section>
@@ -368,15 +400,15 @@
       <div class="wrap about-grid">
         <div class="about-copy">
           <div class="section-heading">
-            <p class="eyebrow">A little about me</p>
-            <h2>Curious by nature. Practical by design.</h2>
+            <p class="eyebrow" data-i18n="eyebrow_about">A little about me</p>
+            <h2 data-i18n="about_title">Curious by nature. Practical by design.</h2>
           </div>
-          <p>I’m an aspiring automation engineer with a passion for design and technology. I’m interested in automating tasks and improving workflows, and I enjoy learning new tools to take on unfamiliar engineering challenges.</p>
-          <p>Through my engineering experience, I’ve developed skills in robotics, mechanical design, programming, and communicating technical ideas. I value collaborative work and like seeing a project come together across both hardware and software.</p>
+          <p data-i18n="about_p1">I’m an aspiring automation engineer with a passion for design and technology. I’m interested in automating tasks and improving workflows, and I enjoy learning new tools to take on unfamiliar engineering challenges.</p>
+          <p data-i18n="about_p2">Through my engineering experience, I’ve developed skills in robotics, mechanical design, programming, and communicating technical ideas. I value collaborative work and like seeing a project come together across both hardware and software.</p>
         </div>
         <figure class="about-photo">
           <img src="pictures/poly_graduation.jpeg" alt="Sebastian and classmates celebrating their graduation" loading="lazy" decoding="async">
-          <figcaption class="caption">An important milestone in my engineering journey.</figcaption>
+          <figcaption class="caption" data-i18n="about_caption">An important milestone in my engineering journey.</figcaption>
         </figure>
       </div>
     </section>
@@ -384,19 +416,19 @@
     <section class="section" id="projects">
       <div class="wrap">
         <div class="section-heading">
-          <p class="eyebrow">Selected work</p>
-          <h2>Engineering projects</h2>
-          <p>A selection of automation, robotics, and prototyping work I’ve contributed to.</p>
+          <p class="eyebrow" data-i18n="eyebrow_selected">Selected work</p>
+          <h2 data-i18n="projects_title">Engineering projects</h2>
+          <p data-i18n="projects_intro">A selection of automation, robotics, and prototyping work I’ve contributed to.</p>
         </div>
 
         <div class="project-list">
           <article class="project-card multi-media">
             <div class="project-copy">
-              <p class="project-number">01 / Robotics &amp; machine vision</p>
-              <h3>Robotic arm movement vision system</h3>
+              <p class="project-number" data-i18n="project1_number">01 / Robotics &amp; machine vision</p>
+              <h3 data-i18n="project1_title">Robotic arm movement vision system</h3>
               <div class="project-description">
-                <p>During my internship, I led the development of a robotic arm movement vision system designed to automate pick-and-place tasks. The concept brought together a Universal Robot arm, vision, and software, and was showcased at the 2022 Singapore International Jewelry Expo.</p>
-                <p>The project sparked my interest in automation: I enjoyed designing the system, building the hardware and software, and seeing the complete solution in action.</p>
+                <p data-i18n="project1_p1">During my internship, I led the development of a robotic arm movement vision system designed to automate pick-and-place tasks. The concept brought together a Universal Robot arm, vision, and software, and was showcased at the 2022 Singapore International Jewelry Expo.</p>
+                <p data-i18n="project1_p2">The project sparked my interest in automation: I enjoyed designing the system, building the hardware and software, and seeing the complete solution in action.</p>
               </div>
               <div class="tags" aria-label="Project skills">
                 <span class="tag">Robotics</span><span class="tag">Machine vision</span><span class="tag">Automation</span>
@@ -413,10 +445,10 @@
 
           <article class="project-card">
             <div class="project-copy">
-              <p class="project-number">02 / Prototyping &amp; assistive technology</p>
-              <h3>AI-assisted mobility hand</h3>
-              <p>At the NTU Deep-Learning Week Hackathon in October 2022, my team created a proof-of-concept mobility hand with a vision system and voice-activated commands. The project explored how an assistive device could respond to its surroundings and to a user.</p>
-              <p>I focused on the mechanical components and 3D design, using Arduino and servo motors to control the hand. Working closely with teammates across different disciplines, we built a prototype together over three days.</p>
+              <p class="project-number" data-i18n="project2_number">02 / Prototyping &amp; assistive technology</p>
+              <h3 data-i18n="project2_title">AI-assisted mobility hand</h3>
+              <p data-i18n="project2_p1">At the NTU Deep-Learning Week Hackathon in October 2022, my team created a proof-of-concept mobility hand with a vision system and voice-activated commands. The project explored how an assistive device could respond to its surroundings and to a user.</p>
+              <p data-i18n="project2_p2">I focused on the mechanical components and 3D design, using Arduino and servo motors to control the hand. Working closely with teammates across different disciplines, we built a prototype together over three days.</p>
               <div class="tags" aria-label="Project skills">
                 <span class="tag">3D design</span><span class="tag">Arduino</span><span class="tag">Prototyping</span>
               </div>
@@ -431,10 +463,10 @@
 
           <article class="project-card">
             <div class="project-copy">
-              <p class="project-number">03 / Software &amp; inspection</p>
-              <h3>Automating the 38-link measurement workflow</h3>
-              <p>I worked on automating a device used by engineering firms to measure material thickness for inspection. The existing process was labor-intensive, so we developed a software solution to reduce manual steps and save engineers time.</p>
-              <p>I also created a demonstration video to show the software and its benefits. The work gave me experience connecting a practical inspection need with a more efficient workflow.</p>
+              <p class="project-number" data-i18n="project3_number">03 / Software &amp; inspection</p>
+              <h3 data-i18n="project3_title">Automating the 38-link measurement workflow</h3>
+              <p data-i18n="project3_p1">I worked on automating a device used by engineering firms to measure material thickness for inspection. The existing process was labor-intensive, so we developed a software solution to reduce manual steps and save engineers time.</p>
+              <p data-i18n="project3_p2">I also created a demonstration video to show the software and its benefits. The work gave me experience connecting a practical inspection need with a more efficient workflow.</p>
               <div class="tags" aria-label="Project skills">
                 <span class="tag">Software</span><span class="tag">Inspection</span><span class="tag">Workflow automation</span>
               </div>
@@ -453,9 +485,9 @@
     <section class="section white" id="media">
       <div class="wrap">
         <div class="section-heading">
-          <p class="eyebrow">In motion</p>
-          <h2>Project videos</h2>
-          <p>Short clips from automation builds and project demonstrations.</p>
+          <p class="eyebrow" data-i18n="eyebrow_motion">In motion</p>
+          <h2 data-i18n="media_title">Project videos</h2>
+          <p data-i18n="media_intro">Short clips from automation builds and project demonstrations.</p>
         </div>
         <div class="film-grid">
           <article class="film-card">
@@ -463,21 +495,21 @@
               <source src="pictures/Gold%20Bar%20%28Pick%20%26%20Place%29.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
-            <h3>Gold Bar Pick &amp; Place</h3>
+            <h3 data-i18n="video1_title">Gold Bar Pick &amp; Place</h3>
           </article>
           <article class="film-card">
             <video controls preload="metadata" playsinline poster="pictures/jewelry_expo.png">
               <source src="pictures/Jewelry%20Expo%20Automation%20Video.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
-            <h3>Jewelry Expo Automation</h3>
+            <h3 data-i18n="video2_title">Jewelry Expo Automation</h3>
           </article>
           <article class="film-card">
             <video controls preload="metadata" playsinline poster="pictures/universal_robot.png">
               <source src="pictures/project_completion.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
-            <h3>Project Completion</h3>
+            <h3 data-i18n="video3_title">Project Completion</h3>
           </article>
         </div>
       </div>
@@ -486,27 +518,27 @@
     <section class="section" id="skills">
       <div class="wrap">
         <div class="section-heading">
-          <p class="eyebrow">How I work</p>
-          <h2>Engineering skills</h2>
+          <p class="eyebrow" data-i18n="eyebrow_skills">How I work</p>
+          <h2 data-i18n="skills_title">Engineering skills</h2>
         </div>
         <div class="skills-grid">
           <article class="skill-card">
-            <h3>3D design &amp; mechanical systems</h3>
-            <p>I use 3D design tools such as Inventor to develop components and support the mechanical side of automation projects.</p>
+            <h3 data-i18n="skill1_title">3D design &amp; mechanical systems</h3>
+            <p data-i18n="skill1_p">I use 3D design tools such as Inventor to develop components and support the mechanical side of automation projects.</p>
           </article>
           <article class="skill-card">
-            <h3>Programming &amp; integration</h3>
-            <p>I enjoy connecting software, hardware, and microcontrollers such as Arduino and Raspberry Pi to build useful automated solutions.</p>
+            <h3 data-i18n="skill2_title">Programming &amp; integration</h3>
+            <p data-i18n="skill2_p">I enjoy connecting software, hardware, and microcontrollers such as Arduino and Raspberry Pi to build useful automated solutions.</p>
           </article>
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact">
-      <h2>Let’s build something useful.</h2>
-      <p>Have an engineering project or opportunity in mind? I’d be glad to hear from you.</p>
+      <h2 data-i18n="contact_title">Let’s build something useful.</h2>
+      <p data-i18n="contact_intro">Have an engineering project or opportunity in mind? I’d be glad to hear from you.</p>
       <button class="button" id="contact-toggle" type="button" aria-expanded="false" aria-controls="contact-details">
-        Show contact details
+        <span data-i18n="show_contact">Show contact details</span>
       </button>
       <div class="contact-details" id="contact-details" hidden>
         <p><strong>Email:</strong> <a href="mailto:sebastian.soon-chun_choong@hsbi.de">sebastian.soon-chun_choong@hsbi.de</a></p>
@@ -516,20 +548,133 @@
   </main>
 
   <footer>
-    <span id="year"></span> Sebastian Soon · Engineering portfolio
+    <span id="year"></span> Sebastian Soon · <span data-i18n="footer">Engineering portfolio</span>
   </footer>
   <script>
     const contactToggle = document.getElementById("contact-toggle");
     const contactDetails = document.getElementById("contact-details");
+    const languageButtons = document.querySelectorAll("[data-language]");
+
+    const translations = {
+      en: {
+        skip: "Skip to content", nav_about: "About", nav_contact: "Contact", nav_projects: "Projects",
+        eyebrow_portfolio: "Engineering portfolio",
+        hero_title: "Building practical automation for real-world work.",
+        hero_copy: "I’m Sebastian, an automation engineer interested in robotics, machine vision, and thoughtful engineering design. I enjoy bringing hardware and software together to make complex tasks simpler.",
+        hero_projects: "Explore my projects", hero_contact: "Get in touch",
+        photo_note: "Collaborative engineering, from first concept to finished system.",
+        eyebrow_about: "A little about me", about_title: "Curious by nature. Practical by design.",
+        about_p1: "I’m an aspiring automation engineer with a passion for design and technology. I’m interested in automating tasks and improving workflows, and I enjoy learning new tools to take on unfamiliar engineering challenges.",
+        about_p2: "Through my engineering experience, I’ve developed skills in robotics, mechanical design, programming, and communicating technical ideas. I value collaborative work and like seeing a project come together across both hardware and software.",
+        about_caption: "An important milestone in my engineering journey.",
+        eyebrow_selected: "Selected work", projects_title: "Engineering projects",
+        projects_intro: "A selection of automation, robotics, and prototyping work I’ve contributed to.",
+        project1_number: "01 / Robotics & machine vision", project1_title: "Robotic arm movement vision system",
+        project1_p1: "During my internship, I led the development of a robotic arm movement vision system designed to automate pick-and-place tasks. The concept brought together a Universal Robot arm, vision, and software, and was showcased at the 2022 Singapore International Jewelry Expo.",
+        project1_p2: "The project sparked my interest in automation: I enjoyed designing the system, building the hardware and software, and seeing the complete solution in action.",
+        project2_number: "02 / Prototyping & assistive technology", project2_title: "AI-assisted mobility hand",
+        project2_p1: "At the NTU Deep-Learning Week Hackathon in October 2022, my team created a proof-of-concept mobility hand with a vision system and voice-activated commands. The project explored how an assistive device could respond to its surroundings and to a user.",
+        project2_p2: "I focused on the mechanical components and 3D design, using Arduino and servo motors to control the hand. Working closely with teammates across different disciplines, we built a prototype together over three days.",
+        project3_number: "03 / Software & inspection", project3_title: "Automating the 38-link measurement workflow",
+        project3_p1: "I worked on automating a device used by engineering firms to measure material thickness for inspection. The existing process was labor-intensive, so we developed a software solution to reduce manual steps and save engineers time.",
+        project3_p2: "I also created a demonstration video to show the software and its benefits. The work gave me experience connecting a practical inspection need with a more efficient workflow.",
+        eyebrow_motion: "In motion", media_title: "Project videos",
+        media_intro: "Short clips from automation builds and project demonstrations.",
+        video1_title: "Gold Bar Pick & Place", video2_title: "Jewelry Expo Automation", video3_title: "Project Completion",
+        eyebrow_skills: "How I work", skills_title: "Engineering skills",
+        skill1_title: "3D design & mechanical systems",
+        skill1_p: "I use 3D design tools such as Inventor to develop components and support the mechanical side of automation projects.",
+        skill2_title: "Programming & integration",
+        skill2_p: "I enjoy connecting software, hardware, and microcontrollers such as Arduino and Raspberry Pi to build useful automated solutions.",
+        contact_title: "Let’s build something useful.",
+        contact_intro: "Have an engineering project or opportunity in mind? I’d be glad to hear from you.",
+        show_contact: "Show contact details", hide_contact: "Hide contact details", footer: "Engineering portfolio"
+      },
+      de: {
+        skip: "Zum Inhalt springen", nav_about: "Über mich", nav_contact: "Kontakt", nav_projects: "Projekte",
+        eyebrow_portfolio: "Ingenieur-Portfolio",
+        hero_title: "Praktische Automatisierung für reale Arbeitsprozesse.",
+        hero_copy: "Ich bin Sebastian, Automation Engineer mit Interesse an Robotik, Bildverarbeitung und durchdachter Konstruktion. Ich bringe Hardware und Software zusammen, um komplexe Aufgaben einfacher zu machen.",
+        hero_projects: "Meine Projekte", hero_contact: "Kontakt aufnehmen",
+        photo_note: "Gemeinsame Entwicklung – vom ersten Konzept bis zum fertigen System.",
+        eyebrow_about: "Kurz zu mir", about_title: "Neugierig von Natur aus. Praktisch im Konzept.",
+        about_p1: "Ich bin angehender Automation Engineer mit Leidenschaft für Design und Technologie. Mich interessiert die Automatisierung von Aufgaben und die Optimierung von Arbeitsabläufen. Neue Werkzeuge lerne ich gerne, um neue technische Herausforderungen zu meistern.",
+        about_p2: "Durch meine Erfahrung in der Ingenieurtechnik habe ich Kenntnisse in Robotik, mechanischem Design, Programmierung und der Kommunikation technischer Ideen entwickelt. Ich schätze Teamarbeit und die Zusammenarbeit von Hardware und Software.",
+        about_caption: "Ein wichtiger Meilenstein auf meinem Weg als Ingenieur.",
+        eyebrow_selected: "Ausgewählte Arbeiten", projects_title: "Ingenieurprojekte",
+        projects_intro: "Eine Auswahl meiner Arbeiten in den Bereichen Automatisierung, Robotik und Prototypenentwicklung.",
+        project1_number: "01 / Robotik & Bildverarbeitung", project1_title: "Bildverarbeitungssystem für Roboterarmbewegungen",
+        project1_p1: "Während meines Praktikums leitete ich die Entwicklung eines Bildverarbeitungssystems für Roboterarmbewegungen zur Automatisierung von Pick-and-Place-Aufgaben. Das Konzept verband einen Universal-Roboterarm, Bildverarbeitung und Software und wurde auf der Singapore International Jewelry Expo 2022 präsentiert.",
+        project1_p2: "Das Projekt weckte mein Interesse an der Automatisierung: Mir gefiel die Entwicklung des Systems, der Bau von Hardware und Software sowie der Einsatz der kompletten Lösung.",
+        project2_number: "02 / Prototypen & assistive Technologie", project2_title: "KI-gestützte Mobilitäts-Hand",
+        project2_p1: "Beim NTU Deep-Learning Week Hackathon im Oktober 2022 entwickelte mein Team einen Mobilitäts-Hand-Prototypen mit Bildverarbeitung und sprachaktivierten Befehlen. Das Projekt untersuchte, wie ein Hilfsmittel auf seine Umgebung und den Nutzer reagieren kann.",
+        project2_p2: "Ich konzentrierte mich auf die mechanischen Komponenten und das 3D-Design und steuerte die Hand mit Arduino und Servomotoren. Gemeinsam mit Teammitgliedern verschiedener Fachrichtungen bauten wir das Konzept innerhalb von drei Tagen.",
+        project3_number: "03 / Software & Prüfung", project3_title: "Automatisierung des Messablaufs für 38 Glieder",
+        project3_p1: "Ich arbeitete an der Automatisierung eines Geräts, das Ingenieurbüros zur Messung von Materialdicken einsetzen. Da der bestehende Prozess arbeitsintensiv war, entwickelten wir eine Softwarelösung zur Reduktion manueller Schritte und zur Zeitersparnis.",
+        project3_p2: "Außerdem erstellte ich ein Demonstrationsvideo zur Software und ihren Vorteilen. Die Arbeit verband einen praktischen Prüfbedarf mit einem effizienteren Arbeitsablauf.",
+        eyebrow_motion: "In Bewegung", media_title: "Projektvideos",
+        media_intro: "Kurzvideos von Automatisierungsprojekten und Demonstrationen.",
+        video1_title: "Goldbarren – Pick & Place", video2_title: "Automatisierung auf der Schmuckmesse", video3_title: "Projektabschluss",
+        eyebrow_skills: "Meine Arbeitsweise", skills_title: "Ingenieurkenntnisse",
+        skill1_title: "3D-Design & mechanische Systeme",
+        skill1_p: "Ich nutze 3D-Designwerkzeuge wie Inventor, um Komponenten zu entwickeln und die mechanische Seite von Automatisierungsprojekten umzusetzen.",
+        skill2_title: "Programmierung & Integration",
+        skill2_p: "Ich verbinde gerne Software, Hardware und Mikrocontroller wie Arduino und Raspberry Pi, um praktische automatisierte Lösungen zu entwickeln.",
+        contact_title: "Lassen Sie uns etwas Nützliches entwickeln.",
+        contact_intro: "Haben Sie ein Ingenieurprojekt oder eine berufliche Gelegenheit im Sinn? Ich freue mich von Ihnen zu hören.",
+        show_contact: "Kontaktdaten anzeigen", hide_contact: "Kontaktdaten ausblenden", footer: "Ingenieur-Portfolio"
+      }
+    };
+
+    function setLanguage(language) {
+      const selected = translations[language] ? language : "en";
+      document.documentElement.lang = selected;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (translations[selected][key]) element.textContent = translations[selected][key];
+      });
+
+      document.title = selected === "de"
+        ? "Sebastian Soon | Ingenieur für Automatisierung & Robotik"
+        : "Sebastian Soon | Automation & Robotics Engineer";
+
+      languageButtons.forEach((button) => {
+        const isActive = button.dataset.language === selected;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      const languageLabel = document.querySelector(".language-switch");
+      languageLabel.setAttribute("aria-label", selected === "de" ? "Sprache auswählen" : "Choose language");
+
+      const contactIsExpanded = contactToggle.getAttribute("aria-expanded") === "true";
+      contactToggle.querySelector("[data-i18n]").textContent =
+        translations[selected][contactIsExpanded ? "hide_contact" : "show_contact"];
+
+      try { localStorage.setItem("portfolio-language", selected); } catch (_) {}
+    }
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.language));
+    });
 
     contactToggle.addEventListener("click", () => {
       const isExpanded = contactToggle.getAttribute("aria-expanded") === "true";
       contactToggle.setAttribute("aria-expanded", String(!isExpanded));
       contactDetails.hidden = isExpanded;
-      contactToggle.textContent = isExpanded ? "Show contact details" : "Hide contact details";
+      const language = document.documentElement.lang === "de" ? "de" : "en";
+      contactToggle.querySelector("[data-i18n]").textContent =
+        translations[language][isExpanded ? "show_contact" : "hide_contact"];
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    let initialLanguage = "en";
+    try {
+      const savedLanguage = localStorage.getItem("portfolio-language");
+      if (savedLanguage === "en" || savedLanguage === "de") initialLanguage = savedLanguage;
+    } catch (_) {}
+    setLanguage(initialLanguage);
   </script>
 </body>
 </html>
